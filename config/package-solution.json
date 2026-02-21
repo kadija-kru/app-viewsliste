@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "app-viewsliste-client-side-solution",
+    "id": "b9e8e1a0-4f9e-4a6e-9e0e-1a2b3c4d5e6f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "App Views Liste description"
+      },
+      "longDescription": {
+        "default": "App Views Liste description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": []
+  },
+  "paths": {
+    "zippedPackage": "solution/app-viewsliste.sppkg"
+  }
+}

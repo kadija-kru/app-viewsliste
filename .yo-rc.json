@@ -1,0 +1,18 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.18.2",
+    "libraryName": "app-viewsliste",
+    "libraryId": "b9e8e1a0-4f9e-4a6e-9e0e-1a2b3c4d5e6f",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "app-viewsliste",
+    "solutionShortDescription": "App Views Liste Solution",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "isCreatingType": "webpart",
+    "componentType": "webpart",
+    "template": "react"
+  }
+}

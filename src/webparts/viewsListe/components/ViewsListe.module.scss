@@ -1,0 +1,232 @@
+@import "~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss";
+
+// Variables
+$blue-primary: #0078d4;
+$blue-dark: #005a9e;
+$blue-light: #deecf9;
+$pink-primary: #c239b3;
+$pink-dark: #8c145a;
+$pink-light: #f9e8f8;
+$card-radius: 8px;
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+$card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.18);
+$transition: all 0.2s ease;
+
+.container {
+  padding: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// Grid layout
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+}
+
+// Card base
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  transition: $transition;
+  background: #ffffff;
+
+  &:hover {
+    box-shadow: $card-shadow-hover;
+    transform: translateY(-2px);
+  }
+}
+
+// Blue theme card
+.cardBlue {
+  border-top: 4px solid $blue-primary;
+
+  .cardHeader {
+    background: $blue-light;
+  }
+
+  .cardIconPlaceholder {
+    background: $blue-primary;
+    color: #ffffff;
+  }
+
+  .cardButton {
+    background: $blue-primary;
+    color: #ffffff;
+
+    &:hover {
+      background: $blue-dark;
+    }
+  }
+}
+
+// Pink theme card
+.cardPink {
+  border-top: 4px solid $pink-primary;
+
+  .cardHeader {
+    background: $pink-light;
+  }
+
+  .cardIconPlaceholder {
+    background: $pink-primary;
+    color: #ffffff;
+  }
+
+  .cardButton {
+    background: $pink-primary;
+    color: #ffffff;
+
+    &:hover {
+      background: $pink-dark;
+    }
+  }
+}
+
+// Card sections
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 16px;
+  min-height: 80px;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cardIconPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cardBody {
+  flex: 1;
+  padding: 12px 16px;
+}
+
+.cardTitle {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #323130;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 12px;
+  color: #605e5c;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  padding: 12px 16px 16px;
+}
+
+.cardButton {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: $transition;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.cardButtonDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Loading state
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 40px;
+  color: #605e5c;
+  justify-content: center;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e1dfdd;
+  border-top-color: $blue-primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Error state
+.errorMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #fde7e9;
+  border: 1px solid #f4b8bb;
+  border-radius: $card-radius;
+  color: #a80000;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.errorIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+// Empty state
+.emptyMessage {
+  padding: 40px;
+  text-align: center;
+  color: #605e5c;
+  font-size: 14px;
+
+  p {
+    margin: 0;
+  }
+}
