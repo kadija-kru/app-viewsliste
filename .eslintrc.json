@@ -1,0 +1,7 @@
+{
+  "extends": "@microsoft/eslint-config-spfx/lib/profiles/react",
+  "parserOptions": {
+    "tsconfigRootDir": ".",
+    "project": "./tsconfig.json"
+  }
+}
