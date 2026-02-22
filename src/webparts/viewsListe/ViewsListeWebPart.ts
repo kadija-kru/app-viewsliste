@@ -3,27 +3,37 @@ import * as ReactDom from "react-dom";
 import { Version } from "@microsoft/sp-core-library";
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField,
   PropertyPaneToggle,
 } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
 import ViewsListe from "./components/ViewsListe";
 import { IViewsListeProps } from "./components/IViewsListeProps";
+import { IAppItem } from "./components/IAppItem";
 
 export interface IViewsListeWebPartProps {
-  listName: string;
+  apps: string; // JSON array of IAppItem
   openInNewTab: boolean;
-  filterActive: boolean;
 }
 
 export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListeWebPartProps> {
   public render(): void {
+    let apps: IAppItem[] = [];
+    try {
+      apps = this.properties.apps ? JSON.parse(this.properties.apps) : [];
+    } catch (e) {
+      console.warn("ViewsListe: Failed to parse apps property", e);
+      apps = [];
+    }
+
     const element: React.ReactElement<IViewsListeProps> = React.createElement(ViewsListe, {
-      listName: this.properties.listName || "Applications",
+      apps,
       openInNewTab: this.properties.openInNewTab !== false,
-      filterActive: this.properties.filterActive !== false,
-      context: this.context,
+      displayMode: this.displayMode,
+      onAppsChanged: (newApps: IAppItem[]) => {
+        this.properties.apps = JSON.stringify(newApps);
+        this.render();
+      },
     });
 
     ReactDom.render(element, this.domElement);
@@ -46,21 +56,10 @@ export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListe
           },
           groups: [
             {
-              groupName: "Paramètres de la liste",
+              groupName: "Paramètres",
               groupFields: [
-                PropertyPaneTextField("listName", {
-                  label: "Nom de la liste SharePoint",
-                  description:
-                    'Nom de la liste contenant les applications (par défaut : "Applications")',
-                  value: this.properties.listName || "Applications",
-                }),
                 PropertyPaneToggle("openInNewTab", {
                   label: "Ouvrir les liens dans un nouvel onglet",
-                  onText: "Oui",
-                  offText: "Non",
-                }),
-                PropertyPaneToggle("filterActive", {
-                  label: "Afficher uniquement les applications actives",
                   onText: "Oui",
                   offText: "Non",
                 }),
@@ -72,3 +71,4 @@ export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListe
     };
   }
 }
+

@@ -1,8 +1,9 @@
-import { WebPartContext } from "@microsoft/sp-webpart-base";
+import { DisplayMode } from "@microsoft/sp-core-library";
+import { IAppItem } from "./IAppItem";
 
 export interface IViewsListeProps {
-  listName: string;
+  apps: IAppItem[];
   openInNewTab: boolean;
-  filterActive: boolean;
-  context: WebPartContext;
+  displayMode: DisplayMode;
+  onAppsChanged: (apps: IAppItem[]) => void;
 }
