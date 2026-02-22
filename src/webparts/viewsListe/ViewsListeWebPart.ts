@@ -10,6 +10,7 @@ import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import ViewsListe from "./components/ViewsListe";
 import { IViewsListeProps } from "./components/IViewsListeProps";
 import { IAppItem } from "./components/IAppItem";
+import { PropertyPaneAppManager } from "./components/AppManagerPropertyPaneField";
 
 export interface IViewsListeWebPartProps {
   apps: string; // JSON array of IAppItem
@@ -29,11 +30,6 @@ export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListe
     const element: React.ReactElement<IViewsListeProps> = React.createElement(ViewsListe, {
       apps,
       openInNewTab: this.properties.openInNewTab !== false,
-      displayMode: this.displayMode,
-      onAppsChanged: (newApps: IAppItem[]) => {
-        this.properties.apps = JSON.stringify(newApps);
-        this.render();
-      },
     });
 
     ReactDom.render(element, this.domElement);
@@ -48,6 +44,13 @@ export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListe
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    let apps: IAppItem[] = [];
+    try {
+      apps = this.properties.apps ? JSON.parse(this.properties.apps) : [];
+    } catch (e) {
+      apps = [];
+    }
+
     return {
       pages: [
         {
@@ -65,10 +68,22 @@ export default class ViewsListeWebPart extends BaseClientSideWebPart<IViewsListe
                 }),
               ],
             },
+            {
+              groupName: "Applications",
+              groupFields: [
+                PropertyPaneAppManager("apps", {
+                  apps,
+                  onChange: (newApps: IAppItem[]) => {
+                    this.properties.apps = JSON.stringify(newApps);
+                    this.render();
+                    this.context.propertyPane.refresh();
+                  },
+                }),
+              ],
+            },
           ],
         },
       ],
     };
   }
 }
-

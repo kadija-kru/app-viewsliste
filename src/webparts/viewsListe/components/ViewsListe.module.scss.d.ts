@@ -1,11 +1,8 @@
 // This file is auto-generated. Do not edit manually.
 declare const styles: {
   readonly container: string;
-  readonly editBar: string;
-  readonly manageButton: string;
   readonly grid: string;
   readonly card: string;
-  readonly cardRemoveButton: string;
   readonly cardBlue: string;
   readonly cardPink: string;
   readonly cardHeader: string;
@@ -18,28 +15,6 @@ declare const styles: {
   readonly cardButton: string;
   readonly cardButtonDisabled: string;
   readonly emptyMessage: string;
-  readonly panelOverlay: string;
-  readonly panel: string;
-  readonly panelHeader: string;
-  readonly panelTitle: string;
-  readonly panelClose: string;
-  readonly panelContent: string;
-  readonly panelSectionTitle: string;
-  readonly panelEmpty: string;
-  readonly panelDivider: string;
-  readonly appList: string;
-  readonly appListItem: string;
-  readonly appListDot: string;
-  readonly appListDotBlue: string;
-  readonly appListDotPink: string;
-  readonly appListName: string;
-  readonly appListRemove: string;
-  readonly addForm: string;
-  readonly formField: string;
-  readonly formLabel: string;
-  readonly formInput: string;
-  readonly formSelect: string;
-  readonly addButton: string;
 };
 
 export = styles;
