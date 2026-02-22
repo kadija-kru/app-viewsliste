@@ -1,10 +1,9 @@
 export interface IAppItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   url: string;
   iconUrl: string;
   theme: "Blue" | "Pink";
   order: number;
-  isActive: boolean;
 }
